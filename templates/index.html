@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Password Generator</h1>
+    {% if password %}
+        <p>{{ password }}</p>
+    {% endif %}
+        
+    <form action="{% url 'generate' %}">
+        {% csrf_token %}
+        <label for="password_length">
+            Password Length
+            <input type="number" value="12" min="6" max="25" name="password_length" id="password_length">
+        </label>
+        <div>
+            <label>
+                Uppercase
+                <input type="checkbox" name="contain_uppercase" value="uppercase">
+            </label>
+        </div>
+        <div>
+            <label>
+                Numbers
+                <input type="checkbox" name="have_numbers">
+            </label>
+        </div>
+        <div>
+            <label>
+                Special characters
+                <input type="checkbox" name="contain_special_characters" value="Special characters">
+            </label>
+        </div>
+        <button class="btn btn-primary"type="submit">Generate Password</button>
+    </form>
+{% endblock %}
